@@ -9,6 +9,16 @@ import {
   TransferType,
 } from "plaid";
 
+interface Transaction {
+  $id: string;
+  name?: string;
+  amount?: number;
+  $createdAt: string;
+  channel: string;
+  category: string;
+  senderBankId: string;
+}
+
 import { plaidClient } from "../plaid";
 import { parseStringify } from "../utils";
 
@@ -45,7 +55,7 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
           type: accountData.type as string,
           subtype: accountData.subtype! as string,
           appwriteItemId: bank.$id,
-          sharaebleId: bank.shareableId,
+          shareableId: bank.shareableId,
         };
 
         return account;
